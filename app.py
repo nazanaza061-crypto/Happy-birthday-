@@ -1,11 +1,18 @@
+
+import os
 from flask import Flask, render_template
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates")
+)
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    # สำหรับทดสอบในเครื่องเท่านั้น
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
+    
